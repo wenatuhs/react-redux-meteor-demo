@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {
   Button,
-  ButtonToolbar,
+  Badge,
   FormGroup,
   InputGroup,
   FormControl
@@ -45,9 +45,9 @@ const App = class extends Component {
     return (
       <div className="container">
         <header>
-          <h1>Todo List ({(tasks ||[] ).length})</h1>
+          <h1>TODOs <Badge style={{fontSize: "0.4em", marginTop: "-30px", marginLeft: "-10px"}}>{(tasks || []).length}</Badge></h1>
         </header>
-        <FormGroup>
+        <FormGroup style={{marginTop: "10px"}}>
           <FormControl componentClass="select" placeholder="Low" onChange={e => handleChangeLevel(e)}
                        style={{float: "left", width: "90px", marginRight: "5px"}}>
             <option value={0}>Low</option>
@@ -55,7 +55,7 @@ const App = class extends Component {
             <option value={2}>High</option>
           </FormControl>
           <InputGroup>
-            <FormControl type="text" id="todoContent" onChange={e => handleChangeContent(e)}/>
+            <FormControl type="text" id="todoContent" placeholder="Task should contain at least 6 characters" onChange={e => handleChangeContent(e)}/>
             <InputGroup.Button>
               <Button bsStyle="info" onClick={handleAddTask} disabled={!todo.content || !todoForm.fields.content.valid}> Add Task </Button>
             </InputGroup.Button>

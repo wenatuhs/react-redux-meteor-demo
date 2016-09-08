@@ -37,10 +37,10 @@ const Task = (props) => {
 
   return (
     <li>{text}
-      <Button bsStyle="danger" style={{float: "right"}}
+      <Button bsStyle="link" bsSize="xs" className="delete-link" style={{float: "right"}}
               onClick={handleRemoveTask.bind(this, _id)}> Remove Task
       </Button>
-      <Label bsStyle={sign} style={{float: "left", marginRight: "5px"}}>{label}</Label>
+      <Label bsStyle={sign} style={{float: "left", marginRight: "10px", width: "60px"}}>{label}</Label>
     </li>
   );
 }
