@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Main from '../components/main';
-import { subscribe, addTask, checkContent, resetContent, changeContent } from  '../actions';
+import { subscribe, addTask, checkContent, resetContent, changeContent, changeLevel } from  '../actions';
 
 // dummy
 class container extends Component {
@@ -28,6 +28,7 @@ const mapDispatch = (dispatch, getState) => {
     subscribe: () => dispatch(subscribe()),
     addTask: (task) => dispatch(addTask(task)),
     changeContent: (value) => dispatch(changeContent(value)),
+    changeLevel: (value) => dispatch(changeLevel(value)),
     checkContent: () => dispatch(checkContent()),
     resetContent: () => dispatch(resetContent()),
   }

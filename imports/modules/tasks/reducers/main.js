@@ -1,7 +1,10 @@
 import { modelReducer, formReducer } from 'react-redux-form';
 
 const initState = {};
-const initTodoState = {content: ''};
+const initTodoState = {
+  content: '',
+  level: 0
+};
 
 export default (state = initState, action) => {
   switch (action.type) {

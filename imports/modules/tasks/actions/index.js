@@ -8,7 +8,7 @@ export const subscribe = () => {
       if (subs.ready()) {
         dispatch({
           type: types.UPDATE_TASK,
-          tasks: Collections.Todos.find().fetch(),
+          tasks: Collections.Todos.find({}, {sort: {level: -1, createdAt: -1}}).fetch(),
         })
       }
     })
@@ -49,8 +49,14 @@ export const changeContent = (value) => {
   }
 }
 
+export const changeLevel = (value) => {
+  return (dispatch, getState, { Meteor }) => {
+    dispatch(actions.change('todo.level', value))
+  }
+}
+
 export const resetContent = () => {
   return (dispatch, getState, { Meteor }) => {
-    dispatch(actions.reset('todo'));
+    dispatch(actions.reset('todo.content'));
   }
 }
