@@ -1,5 +1,7 @@
-import Tasks from './main';
+import Tasks, {todo, todoForm} from './main';
 
 export default {
-  Tasks
+  Tasks,
+  todo,
+  todoForm,
 }

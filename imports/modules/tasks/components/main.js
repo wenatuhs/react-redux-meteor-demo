@@ -11,15 +11,24 @@ import Task from '../containers/task';
 
 const App = class extends Component {
   render() {
-    const { tasks, addTask } = this.props
-    const handleAddTask = (e) => {
-      e.preventDefault();
-      // Have to use findDOMNode with react-bootstrap
-      const node = findDOMNode(this.refs.taskInput);
-      const task = {text: node.value};
-      addTask(task);
-      node.value = null;
+    const { tasks, todo, todoForm,
+      addTask, changeContent, checkContent, resetContent } = this.props;
+
+    const handleChangeContent = (e) => {
+      changeContent(e.target.value);
+      checkContent();
     }
+
+    const handleAddTask = () => {
+      const task = {text: todo.content};
+      addTask(task);
+
+      resetContent();
+      const node = $('#todoContent')[0];
+      node.value = '';
+      node.focus();
+    }
+
     const renderTasks = () => {
       return (tasks||[]).map((task) => (
         <Task key={task._id} task={task} />
@@ -29,13 +38,13 @@ const App = class extends Component {
     return (
       <div className="container">
         <header>
-          <h1>Todo List ({(tasks ||[] ).length})</h1>
+          <h1>Todo List ({(tasks ||[] ).length}) {todo.content}</h1>
         </header>
         <FormGroup>
           <InputGroup>
-            <FormControl type="text" ref="taskInput"/>
+            <FormControl type="text" id="todoContent" onChange={e => handleChangeContent(e)}/>
             <InputGroup.Button>
-              <Button bsStyle="info" onClick={handleAddTask.bind(this)}> Add Task </Button>
+              <Button bsStyle="info" onClick={handleAddTask} disabled={!todo.content || !todoForm.fields.content.valid}> Add Task </Button>
             </InputGroup.Button>
           </InputGroup>
         </FormGroup>

@@ -1,4 +1,7 @@
+import { modelReducer, formReducer } from 'react-redux-form';
+
 const initState = {};
+const initTodoState = {content: ''};
 
 export default (state = initState, action) => {
   switch (action.type) {
@@ -15,3 +18,6 @@ export default (state = initState, action) => {
   }
   return state
 }
+
+export const todo = modelReducer('todo', initTodoState);
+export const todoForm = formReducer('todo', initTodoState);

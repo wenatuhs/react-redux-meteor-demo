@@ -1,4 +1,5 @@
 import * as types from '../constants/tasks';
+import { actions } from 'react-redux-form';
 
 export const subscribe = () => {
   return (dispatch, getState, { Meteor, Tracker, Collections }) => {
@@ -28,5 +29,28 @@ export const removeTask = (taskId) => {
     Meteor.call("removeTask", taskId, (err, res) => {
       if (err) return console.error(err)
     });
+  }
+}
+
+const contentIsVaild = (content) => {
+  // No shorter than 6 characters
+  return content && content.length > 5;
+};
+
+export const checkContent = () => {
+  return (dispatch, getState, { Meteor }) => {
+    dispatch(actions.validate('todo.content', contentIsVaild))
+  }
+}
+
+export const changeContent = (value) => {
+  return (dispatch, getState, { Meteor }) => {
+    dispatch(actions.change('todo.content', value))
+  }
+}
+
+export const resetContent = () => {
+  return (dispatch, getState, { Meteor }) => {
+    dispatch(actions.reset('todo'));
   }
 }
